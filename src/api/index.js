@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const instance = axios.create({
-  baseURL: `http://localhost:3001/api`,
+  baseURL: `http://localhost:${process.env.REACT_APP_API_PORT || 3001}/api`,
   headers: { 'Content-Type': 'application/json' },
   timeout: 10000
 });

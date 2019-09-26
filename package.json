@@ -25,13 +25,15 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "serve": "^11.1.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "serve": "cross-env NODE_ENV=production && concurrently --kill-others-on-fail \"nodemon ./server/server.js\" \"serve -s build\"",
     "client": "yarn start",
     "client:build": "cross-env NODE_ENV=production && yarn build",
-    "server": "nodemon server.js",
+    "server": "nodemon ./server/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
