@@ -52,15 +52,11 @@ function SavedVideo() {
   }, []);
 
   return (
-    <>
-      <Title level={2}>Saved video</Title>
-
+    <div style={{ margin: '30px 0 0' }}>
       {savedVideoLoading ? (
-        <div style={{ margin: '30px 0 0' }}>
-          <Spin
-            indicator={<Icon type="loading" style={{ fontSize: 48 }} spin />}
-          />
-        </div>
+        <Spin
+          indicator={<Icon type="loading" style={{ fontSize: 48 }} spin />}
+        />
       ) : (
         <>
           {savedVideoId.length === 0 && (
@@ -68,28 +64,25 @@ function SavedVideo() {
           )}
           <div className="grid-wrapper">
             {savedVideo.length > 0 &&
-              savedVideo.map(
-                (v, index) =>
-                  v.id.videoId && (
-                    <VideoCard
-                      key={index}
-                      width={v.snippet.thumbnails.medium.width}
-                      url={v.snippet.thumbnails.medium.url}
-                      title={v.snippet.title}
-                      description={v.snippet.description}
-                      actions={[
-                        <Icon
-                          type="play-circle"
-                          onClick={() => handlePlayClick(v.id.videoId)}
-                        />,
-                        <Icon
-                          type="delete"
-                          onClick={() => handleRemoveClick(v.id)}
-                        />
-                      ]}
+              savedVideo.map((v, index) => (
+                <VideoCard
+                  key={index}
+                  width={v.snippet.thumbnails.medium.width}
+                  url={v.snippet.thumbnails.medium.url}
+                  title={v.snippet.title}
+                  description={v.snippet.description}
+                  actions={[
+                    <Icon
+                      type="play-circle"
+                      onClick={() => handlePlayClick(v.id)}
+                    />,
+                    <Icon
+                      type="delete"
+                      onClick={() => handleRemoveClick(v.id)}
                     />
-                  )
-              )}
+                  ]}
+                />
+              ))}
           </div>
           {savedVideoError && (
             <Alert
@@ -100,7 +93,7 @@ function SavedVideo() {
           )}
         </>
       )}
-    </>
+    </div>
   );
 }
 

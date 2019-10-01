@@ -34,13 +34,12 @@ function SearchVideo() {
 
   return (
     <>
-      <Title level={2}>Search video</Title>
       <Search
         enterButton="Search"
         size="large"
         onSearch={handleSearch}
         disabled={videosLoading}
-        style={{ maxWidth: 450, margin: '0 0 30px' }}
+        style={{ maxWidth: 450, margin: '30px 0 30px' }}
       />
 
       {videosLoading ? (

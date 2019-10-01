@@ -11,8 +11,7 @@ const api = {
   getSearchedVideos: key => instance.get(`/search-videos/${key}`),
   getSavedVideos: list =>
     instance.get(`/saved-videos/`, {
-      params: { id: list },
-      paramsSerializer: params => qs.stringify(params)
+      params: { id: list }
     })
 };
 

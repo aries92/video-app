@@ -5,13 +5,7 @@ const { Meta } = Card;
 
 function VideoCard({ url, title, description, actions }) {
   return (
-    <Card
-      style={{
-        margin: '0 0 30px'
-      }}
-      cover={<img alt="" src={url} />}
-      actions={actions}
-    >
+    <Card cover={<img alt="" src={url} />} actions={actions}>
       <Meta
         title={title}
         description={description}

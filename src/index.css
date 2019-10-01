@@ -15,8 +15,9 @@ code {
 
 .grid-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 320px));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   grid-gap: 30px;
-  max-width: 1200px;
-  align-items: start
+  align-items: start;
+  padding-bottom: 30px;
+  max-width: 1366px;
 }
