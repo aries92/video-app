@@ -1,28 +1,22 @@
 import React from 'react';
 import { Alert, Icon, Input, message, Spin, Typography } from 'antd';
-import { connect } from 'react-redux';
-import { searchVideo, setModalVisible, setVideoId } from '../actions/index';
 import Cookie from 'js-cookie';
 import VideoCard from '../components/VideoCard';
+import { useModal, useSearchVideo } from '../hooks';
 
 const { Title } = Typography;
 const Search = Input.Search;
 
-function SearchVideo({
-  videos,
-  error,
-  loading,
-  searchVideo,
-  setModalVisible,
-  setVideoId
-}) {
+function SearchVideo() {
+  const { videos, videosError, videosLoading, searchVideo } = useSearchVideo();
+  const { showModal } = useModal();
+
   function handleSearch(value) {
     searchVideo(value);
   }
 
   function handlePlayClick(id) {
-    setModalVisible(true);
-    setVideoId(id);
+    showModal(id);
   }
 
   function handleSaveClick(id) {
@@ -45,11 +39,11 @@ function SearchVideo({
         enterButton="Search"
         size="large"
         onSearch={handleSearch}
-        disabled={loading}
+        disabled={videosLoading}
         style={{ maxWidth: 450, margin: '0 0 30px' }}
       />
 
-      {loading ? (
+      {videosLoading ? (
         <div>
           <Spin
             indicator={<Icon type="loading" style={{ fontSize: 48 }} spin />}
@@ -59,29 +53,32 @@ function SearchVideo({
         <>
           <div className="grid-wrapper">
             {videos &&
-              videos.map((v, index) => (
-                <VideoCard
-                  key={index}
-                  width={v.snippet.thumbnails.medium.width}
-                  url={v.snippet.thumbnails.medium.url}
-                  title={v.snippet.title}
-                  description={v.snippet.description}
-                  actions={[
-                    <Icon
-                      type="play-circle"
-                      onClick={() => handlePlayClick(v.id.videoId)}
-                    />,
-                    <Icon
-                      type="save"
-                      onClick={() => handleSaveClick(v.id.videoId)}
+              videos.map(
+                (v, index) =>
+                  v.id.videoId && (
+                    <VideoCard
+                      key={index}
+                      width={v.snippet.thumbnails.medium.width}
+                      url={v.snippet.thumbnails.medium.url}
+                      title={v.snippet.title}
+                      description={v.snippet.description}
+                      actions={[
+                        <Icon
+                          type="play-circle"
+                          onClick={() => handlePlayClick(v.id.videoId)}
+                        />,
+                        <Icon
+                          type="save"
+                          onClick={() => handleSaveClick(v.id.videoId)}
+                        />
+                      ]}
                     />
-                  ]}
-                />
-              ))}
+                  )
+              )}
           </div>
-          {error && (
+          {videosError && (
             <Alert
-              message={error}
+              message={videosError}
               type="error"
               style={{ margin: '15px 0 0' }}
             />
@@ -94,17 +91,4 @@ function SearchVideo({
 
 SearchVideo.propTypes = {};
 
-const mapStateToProps = state => ({
-  ...state.searchVideoReducer
-});
-
-const mapDispatchToProps = {
-  searchVideo,
-  setModalVisible,
-  setVideoId
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchVideo);
+export default SearchVideo;

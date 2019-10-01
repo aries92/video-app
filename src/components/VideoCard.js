@@ -1,10 +1,9 @@
 import React from 'react';
 import { Card } from 'antd';
-import { withRouter } from 'react-router-dom';
 
 const { Meta } = Card;
 
-function VideoCard({ url, title, width, description, actions }) {
+function VideoCard({ url, title, description, actions }) {
   return (
     <Card
       style={{

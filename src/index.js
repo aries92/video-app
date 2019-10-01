@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { store } from './store';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 import App from './App';
+import { AppProvider } from './context';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AppProvider>
       <App />
-    </BrowserRouter>
-  </Provider>,
+    </AppProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

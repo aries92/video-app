@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from 'antd';
-import { withRouter } from 'react-router-dom';
-import { setModalVisible, setVideoId } from '../actions/index';
-import { connect } from 'react-redux';
+import { useModal } from '../hooks';
 
-function VideoModal({ videoId, visible, setModalVisible, setVideoId }) {
+function VideoModal() {
+  const { modalVisible, videoId, hideModal } = useModal();
+
   function handleCancel() {
-    setModalVisible(false);
-    setVideoId(null);
+    hideModal();
   }
 
   return (
@@ -15,7 +14,7 @@ function VideoModal({ videoId, visible, setModalVisible, setVideoId }) {
       title="Watch Video"
       footer={null}
       onCancel={handleCancel}
-      visible={visible}
+      visible={modalVisible}
     >
       <div
         style={{
@@ -45,16 +44,4 @@ function VideoModal({ videoId, visible, setModalVisible, setVideoId }) {
   );
 }
 
-const mapStateToProps = state => ({
-  ...state.videoModalReducer
-});
-
-const mapDispatchToProps = {
-  setModalVisible,
-  setVideoId
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VideoModal);
+export default VideoModal;
