@@ -4,8 +4,6 @@ import { Alert, Icon, Spin, Typography } from 'antd';
 import VideoCard from '../components/VideoCard';
 import { useModal, useSavedVideo } from '../hooks';
 
-const { Title } = Typography;
-
 function SavedVideo() {
   const {
     savedVideo,
