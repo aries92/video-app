@@ -38,6 +38,7 @@ export function useSavedVideo() {
       setSavedVideo(res.data.videos);
       setSavedVideoLoading(false);
     } catch (error) {
+      setSavedVideoLoading(false);
       setSavedVideoError(`Error`);
     }
   }
