@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/cypress": "^5.0.1",
     "antd": "^3.19.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
