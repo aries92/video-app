@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Cookie from 'js-cookie';
-import { Alert, Icon, Spin, Typography } from 'antd';
+import { Alert, Icon, Spin } from 'antd';
 import VideoCard from '../components/VideoCard';
 import { useModal, useSavedVideo } from '../hooks';
 
@@ -47,6 +47,7 @@ function SavedVideo() {
     if (isNeedToFetchVideo()) {
       getSavedVideo(savedVideoId);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

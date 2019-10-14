@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Icon, Input, message, Spin, Typography } from 'antd';
+import { Alert, Icon, Input, message, Spin } from 'antd';
 import Cookie from 'js-cookie';
 import VideoCard from '../components/VideoCard';
 import { useModal, useSearchVideo } from '../hooks';
