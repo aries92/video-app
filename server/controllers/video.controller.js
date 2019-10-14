@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 
 const youtube = google.youtube({
   version: 'v3',
-  auth: proccess.env.REACT_APP_YOUTUBE_API_KEY
+  auth: process.env.REACT_APP_YOUTUBE_API_KEY
 });
 
 exports.getSearchedVideos = async (req, res) => {
