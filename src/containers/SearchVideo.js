@@ -4,8 +4,7 @@ import Cookie from 'js-cookie';
 import VideoCard from '../components/VideoCard';
 import { useModal, useSearchVideo } from '../hooks';
 
-const { Title } = Typography;
-const Search = Input.Search;
+const { Search } = Input;
 
 function SearchVideo() {
   const { videos, videosError, videosLoading, searchVideo } = useSearchVideo();
@@ -40,6 +39,7 @@ function SearchVideo() {
         onSearch={handleSearch}
         disabled={videosLoading}
         style={{ maxWidth: 450, margin: '30px 0 30px' }}
+        data-testid={'searchInput'}
       />
 
       {videosLoading ? (
@@ -50,7 +50,7 @@ function SearchVideo() {
         </div>
       ) : (
         <>
-          <div className="grid-wrapper">
+          <div className="grid-wrapper" data-testid={'searchResults'}>
             {videos &&
               videos.map(
                 (v, index) =>

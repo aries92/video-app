@@ -5,16 +5,16 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const router = require('./routes/video.route');
 const cors = require('cors');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const port = process.env.API_PORT || 3001;
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
-app.use(cors())
-app.use(cookieParser())
+app.use(cors());
+app.use(cookieParser());
 
 app.get('/api/favicon.ico', (req, res) => res.status(204));
 
