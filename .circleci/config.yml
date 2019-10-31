@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.1
+version: 2
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.10
@@ -20,18 +20,18 @@ jobs:
        Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: Install dependecies
-          command:  yarn install --network-timeout 1000000
+          command:  yarn install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Build
