@@ -41,7 +41,7 @@ jobs:
           name: Run e2e tests
           command:  yarn run test:e2e
 workflows:
-  version: 2
+  version: 2.1
   build-and-deploy:
     jobs:
       - build
