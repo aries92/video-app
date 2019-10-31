@@ -17,21 +17,21 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "yarn.lock" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
+       Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
           name: Install dependecies
           command:  yarn install --network-timeout 1000000
 
-#      - save_cache:
-#          paths:
-#            - node_modules
-#          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
           name: Build
@@ -40,22 +40,22 @@ jobs:
       - run:
           name: Run e2e tests
           command:  yarn run test:e2e
-workflows:
-  version: 2.1
-  build-and-deploy:
-    jobs:
-      - build
-      - aws-ecr/build_and_push_image:
-          requires:
-            - build
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          region: ${AWS_DEFAULT_REGION}
-          tag: "${CIRCLE_SHA1}"
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build_and_push_image
-          aws-region: ${AWS_DEFAULT_REGION}
-          family: "${AWS_RESOURCE_NAME_PREFIX}-service"
-          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"
+#workflows:
+#  version: 2.1
+#  build-and-deploy:
+#    jobs:
+#      - build
+#      - aws-ecr/build_and_push_image:
+#          requires:
+#            - build
+#          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+#          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+#          region: ${AWS_DEFAULT_REGION}
+#          tag: "${CIRCLE_SHA1}"
+#      - aws-ecs/deploy-service-update:
+#          requires:
+#            - aws-ecr/build_and_push_image
+#          aws-region: ${AWS_DEFAULT_REGION}
+#          family: "${AWS_RESOURCE_NAME_PREFIX}-service"
+#          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+#          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX},tag=${CIRCLE_SHA1}"
