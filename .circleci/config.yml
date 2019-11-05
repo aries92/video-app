@@ -54,6 +54,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: video-app
           tag: '${CIRCLE_SHA1}'
+
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
