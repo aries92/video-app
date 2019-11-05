@@ -53,11 +53,11 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
           repo: video-app
-          tag: 'latest'
+          tag: '${CIRCLE_SHA1}'
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
           family: video-app-service
-          cluster-name: video-app-clusterzzz
+          cluster-name: video-app-cluster
           aws-region: AWS_DEFAULT_REGION
-          container-image-name-updates: 'container=video-app-container,tag=${CIRCLE_SHA1}'
+          container-image-name-updates: 'container=video-app-service,tag=${CIRCLE_SHA1}'
