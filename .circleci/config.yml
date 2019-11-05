@@ -53,7 +53,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
           repo: video-app
-          tag: ':latest'
+          tag: 'latest'
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
