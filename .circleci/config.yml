@@ -57,6 +57,6 @@ workflows:
       - aws-ecs/update-task-definition:
           requires:
             - aws-ecr/build-and-push-image
-          family: video-app-task
+          family: video-app-service
           aws-region: AWS_DEFAULT_REGION
           container-image-name-updates: 'container=video-app-container,tag=${CIRCLE_SHA1}'
