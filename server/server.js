@@ -8,7 +8,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
 
-const port = process.env.API_PORT || 3001;
+const port = process.env.API_PORT || 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,4 +30,8 @@ app.use((req, res, next) => {
 // start the app
 app.listen(port, () => {
   console.log(`App Server Listening at ${port}`);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
