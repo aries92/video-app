@@ -58,7 +58,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: video-app-task
-          cluster-name: video-app-cluster
+          family: video-app
+          cluster-name: video-app
           aws-region: AWS_DEFAULT_REGION
-          container-image-name-updates: 'container=video-app-container,tag=latest'
+          container-image-name-updates: 'container=video-app,tag=latest'

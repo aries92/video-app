@@ -11,6 +11,6 @@ context('Search Video', () => {
       .type('test')
       .should('have.value', 'test');
     cy.get('.ant-btn').click();
-    cy.findByTestId('searchResults').should('exist')
+    cy.findByTestId('searchResults').should('exist');
   });
 });

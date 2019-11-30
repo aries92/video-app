@@ -16,7 +16,7 @@ const server = app.listen(3000, 'localhost', () => {
 
   cypress
     .run({
-      project: __dirname,
+      project: __dirname
     })
     .then(({ totalFailed }) => {
       console.log('Stopping server');
