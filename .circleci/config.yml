@@ -61,4 +61,4 @@ workflows:
           family: video-app
           cluster-name: video-app
           aws-region: AWS_DEFAULT_REGION
-          container-image-name-updates: 'container=video-app,tag=latest'
+          container-image-name-updates: 'container=video-app,tag=video-app'
